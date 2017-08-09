@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfToText", "..\PdfToText\PdfToText.csproj", "{563F5F70-3855-4EE3-B100-78D6D937F0CB}"
 EndProject
@@ -12,8 +12,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataModel", "DataModel\DataModel.csproj", "{FF4A9B67-0FF0-44D3-9D18-77E97BFB9D49}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{09A44900-19E7-4E37-A35F-76BDDEF04689}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{741EE7AE-1CFC-4418-A914-F44DAD48819A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +39,6 @@ Global
 		{09A44900-19E7-4E37-A35F-76BDDEF04689}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09A44900-19E7-4E37-A35F-76BDDEF04689}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09A44900-19E7-4E37-A35F-76BDDEF04689}.Release|Any CPU.Build.0 = Release|Any CPU
-		{741EE7AE-1CFC-4418-A914-F44DAD48819A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{741EE7AE-1CFC-4418-A914-F44DAD48819A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{741EE7AE-1CFC-4418-A914-F44DAD48819A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{741EE7AE-1CFC-4418-A914-F44DAD48819A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
