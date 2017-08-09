@@ -1,0 +1,84 @@
+﻿@model DataModel.Pengadilan
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Detil pengadilan "+Model.Nama;
+}
+
+
+
+<div class="mb20">
+    <h2 class="title" data-animate="fadeInUp">Informasi detil pengadilan</h2>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Nama)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Nama)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Alamat)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Alamat)
+                    </dd>
+
+                    @*<dt>
+                    @Html.DisplayNameFor(model => model.NamaCompact)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NamaCompact)
+                </dd>*@
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.JenisLembagaPeradilan)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.JenisLembagaPeradilan)
+                    </dd>
+
+                </dl>
+                </div>
+            </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-sm-12 text-center" data-animate="fadeInUp">
+                        <h3 class="title">Jumlah kasus yang diadili per tahun</h3>
+                        <hr />
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-center" data-animate="fadeInUp">
+                        @Html.Action("Index", "Shared", new { pnid = Model.ID })
+                    </div>
+                    </div>
+                </div>
+            <div class="col-md-6">
+                <h3>Daftar kasus yang diadili</h3>
+                @*@Html.Action("DaftarPutusan", "Shared", new { pengadilanID = Model.ID })*@
+                @*@Html.Partial("ListPutusan", Model.Kasus)*@
+
+                @{Html.RenderAction("DaftarPutusan", "Shared", new { pengadilanID = Model.ID });}
+            </div>
+            </div>
+        </div>
+    </div>
+@*<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@

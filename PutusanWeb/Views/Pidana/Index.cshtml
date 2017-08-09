@@ -1,0 +1,135 @@
+﻿
+@model PagedList.IPagedList<PutusanWeb.Models.PidanaViewModel>
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Daftar Putusan";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+
+
+        <div class="mb20 text-center">
+            <h2 class="title" data-animate="fadeInUp">Cari Putusan</h2>
+
+        </div>
+
+        @using (Html.BeginForm("Index", "Pidana", FormMethod.Get))
+        {
+
+            <div class=" row form-group">
+                <div class="col-md-10 text-center" style=" padding:5px">
+                    @Html.TextBox("query", ViewBag.CurrentFilter as string, new { @class = "form-control col-md-10" })
+                </div>
+
+                <div class="col-md-2 text-center" style=" padding:5px">
+
+                    <button class="btn btn-success" type="submit">
+                        <i class="glyphicon glyphicon-search" aria-hidden="true"></i> Search
+                    </button>
+                </div>
+                @*<div class="row text-center col-md-12">
+                    <span style="font-size:11px"> Kami hanya menampilkan 100 data hasil pencarian. Silakan menambahkan kata kata pencarian yang lebih spesifik untuk mendapatkan hasil yang lebih tepat seperti " <strong>bukittinggi judi 2016 </strong>" </span>
+                </div>*@
+            </div>
+
+        }
+
+        <br />
+        <br />
+        <br />
+
+
+
+        <div id="search-results" class=" row ">
+
+            @if (Model.Count() > 0)
+        {
+
+
+
+
+        <div>
+
+            <table class="table table-striped">
+
+
+                @foreach (var item in Model)
+                {
+            <tr>
+
+                <td>
+                    <div class="row col-md-12 ">
+                        <h4 class="text-warning te">
+                            Nomor Putusan :
+                            @Html.ActionLink(item.NomorPutusan, "Details", "PutusanPidanas", new { id = item.ID }, null)
+                        </h4>
+
+                    </div>
+                    <div class="row col-md-12">
+                        Tanggal dibacakan:
+                        @Html.DisplayFor(modelItem => item.TanggalDibacakan)
+
+                    </div>
+                    <div class="row col-md-12">
+                        Klasifikasi:
+                        @Html.DisplayFor(modelItem => item.Klasifikasi)
+
+                    </div>
+                    <div class="row col-sm-12 ">
+                        <p class="well-sm">
+                            @if (item.CatatanAmar != null && item.CatatanAmar.Length > 200)
+                                    {
+                                @Html.DisplayFor(modelItem => item.CatatanAmar).ToString().Substring(0, 200)
+                                    }
+                                    else
+                                    {
+                                @Html.DisplayFor(modelItem => item.CatatanAmar)
+                                    }
+                        </p>
+                    </div>
+
+
+                </td>
+
+
+            </tr>
+                }
+
+            </table>
+
+        </div>
+
+        <div>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { query = ViewBag.CurrentFilter, page, pageSize = Model.PageSize }), new PagedListRenderOptions { MaximumPageNumbersToDisplay = 3,  DisplayEllipsesWhenNotShowingAllPageNumbers = false })
+            Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Records
+
+            @*@Html.PagedListPager(Model, page => Url.Action("Index", new { query = ViewBag.CurrentFilter, page, pageSize = Model.PageSize }),
+                   PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions() { MaximumPageNumbersToDisplay = 3, DisplayEllipsesWhenNotShowingAllPageNumbers = false }, new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "search-results" }))
+                Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Records*@
+
+        </div>
+
+    }
+    else
+    {
+        <p>
+            No record found
+        </p>
+    }
+        </div>
+
+    </div>
+
+
+
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

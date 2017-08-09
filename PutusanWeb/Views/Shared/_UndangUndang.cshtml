@@ -1,0 +1,44 @@
+﻿
+@model IEnumerable<DataModel.UndangUndang>
+
+
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Pasal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TextPasal)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.JenisUU)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HukumanPenjara)
+            </th>*@
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pasal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TextPasal)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.JenisUU)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HukumanPenjara)
+                </td>*@
+                
+            </tr>
+        }
+
+    </table>
+
+   

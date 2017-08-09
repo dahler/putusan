@@ -1,0 +1,100 @@
+﻿
+@*//@model List<PutusanWeb.Models.PidanaViewModel>*@
+@model PagedList.IPagedList <PutusanWeb.Models.PidanaViewModel>
+@using PagedList.Mvc
+
+@*@{
+    ViewBag.Title = "Index";
+}*@
+
+<br />
+
+
+@if (Model.Count() > 0) {
+
+<div>
+    <h2>Daftar Putusan</h2>
+
+</div>
+
+<div>
+
+    <p>
+        @*@Html.ActionLink("Create New", "Create")*@
+    </p>
+
+
+    <table class="table">
+        <tr>
+            <th>
+                Nomor Putusan
+            </th>
+            <th>
+                Terdakwa
+            </th>
+            <th>
+                Keputusan
+            </th>
+            <th>
+                Tanggal Putusan
+            </th>
+            <th>
+                Hakim Ketua
+            </th>
+            <th>
+                Penuntut
+            </th>
+            <th>
+                Catatan Amar
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.NomorPutusan, "SendCustomerMessage", "SendMessage",
+                     new { id = item.NomorPutusan })
+                    @*@Html.DisplayFor(modelItem => item.NomorPutusan)*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tergugat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kaidah)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TanggalRegister)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HakimKetua.Nama)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Penuntut.Nama)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CatatanAmar)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <br />
+
+   
+</div>
+
+<div>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new {page, pageSize = Model.PageSize }))
+    Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Records
+</div>
+
+}
+else
+{
+    <p>
+        No record found
+    </p>
+}

@@ -1,0 +1,200 @@
+﻿@model DataModel.PutusanPidana
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>PutusanPidana</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HakimKetua.Catatan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HakimKetua.Catatan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Penuntut.Catatan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Penuntut.Catatan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomorPutusan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomorPutusan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Proses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TanggalRegister)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TanggalRegister)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TanggalMusyawarah)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TanggalMusyawarah)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TanggalDibacakan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TanggalDibacakan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Klasifikasi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Klasifikasi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubKlasifikasi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubKlasifikasi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Panitera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Panitera)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JenisLembagaPeradilan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JenisLembagaPeradilan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LembagaPeradilan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LembagaPeradilan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tersangka)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tersangka)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CatatanAmar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CatatanAmar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Anggota)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Anggota)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Yurisprudensi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Yurisprudensi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusTahanan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatusTahanan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BerkekuatanHukumTetap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BerkekuatanHukumTetap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kaidah)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kaidah)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ringkasan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ringkasan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Raw)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Raw)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

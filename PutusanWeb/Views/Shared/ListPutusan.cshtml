@@ -1,0 +1,69 @@
+﻿@*@model IEnumerable<DataModel.PutusanPidana>*@
+
+@model PagedList.IPagedList<DataModel.PutusanPidana>
+@using PagedList.Mvc
+
+
+
+@if (Model.Count() > 0)
+{
+    <div id="divPutusan">
+        <div>
+            <table class="table table-striped">
+                <tr>
+
+                    <th>
+                        Nomor Putusan
+                        @*@Html.DisplayNameFor(model => model.NomorPutusan)*@
+                    </th>
+
+                    <th>
+                        Tanggal Dibacakan
+                        @*@Html.DisplayNameFor(model => model.TanggalDibacakan)*@
+                    </th>
+
+
+                </tr>
+
+                @foreach (var item in Model)
+        {
+        <tr>
+
+            <td>
+                @Html.ActionLink(item.NomorPutusan, "Details", "PutusanPidanas", new { id = item.ID }, null)
+                @*@Html.DisplayFor(modelItem => item.NomorPutusan)*@
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.TanggalDibacakan)
+            </td>
+
+
+        </tr>
+        }
+
+            </table>
+        </div>
+        <div>
+
+            @Html.PagedListPager(Model, page => Url.Action("DaftarPutusan", "Shared", new { pengadilanID = ViewBag.Pengadilan, page, pageSize = Model.PageSize, hakimID = ViewBag.Hakim }),
+           PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions() { MaximumPageNumbersToDisplay = 3, DisplayEllipsesWhenNotShowingAllPageNumbers = false}, new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "divPutusan" }))
+
+
+            Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Records
+
+
+        </div>
+    </div>
+}
+
+
+@*@Html.Code(@<div>
+        @@(Html.BootstrapTable(Url.Action("GetPeopleData"))
+        .Columns("Id", "FirstName", "LastName", "Email")
+        )
+    </div>)
+<br />
+@(Html.BootstrapTable(Url.Action("GetPeopleData"))
+    .Columns("Id", "FirstName", "LastName", "Email")
+)*@

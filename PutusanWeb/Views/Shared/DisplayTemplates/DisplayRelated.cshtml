@@ -1,0 +1,33 @@
+﻿@model string
+
+@if (Model != null)
+{
+    // Display Enum using same names (from [Display] attributes) as in editors
+    //string displayName = "Test";
+
+
+
+    string[] hasil = Model.Split(new string[] { "|||" }, StringSplitOptions.None);
+
+    @*@Html.DisplayText(displayName)*@
+
+    for (int i = 0; i < hasil.Length; i++)
+    {
+        var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(hasil[i]);
+        var encodedFilePath = System.Convert.ToBase64String(plainTextBytes);
+        <table>
+            <tr>
+                <td>
+                    @Html.ActionLink(hasil[i], "DependentDetails", "PutusanPidanas", new { query = encodedFilePath }, null)
+                    @*@Html.DisplayFor(modelItem => item.NomorPutusan)*@
+                </td>
+            </tr>
+        </table>
+    }
+}
+else
+{
+    // This Enum type is not supported.  Fall back to the text.
+    @*@Html.DisplayText("ga ada detail")*@
+    <span id="ElementsId">Test  null</span>
+}

@@ -1,0 +1,510 @@
+﻿@model DataModel.PutusanPidana
+
+
+@{
+    if (Model != null)
+    { 
+        ViewBag.Title = "Detil Putusan "+ Model.NomorPutusan;
+    }
+    else
+    {
+        ViewBag.Title = "Detil Putusan ";
+    }
+}
+@using Common
+
+<h2>Detil Putusan</h2>
+
+<div>
+   
+    <hr />
+    @if (Model != null)
+    {
+        <div class="row">
+            <div class="col-md-6">
+                <dl class="dl-horizontal">
+
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.NomorPutusan)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.NomorPutusan)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Proses)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Proses)
+                    </dd>
+                    @if (Model.HakimKetua != null)
+                    {
+                        <dt>
+                            Hakim Ketua
+                        </dt>
+
+                        <dd>
+                            @*@Html.DisplayFor(model => model.HakimKetua.Nama)*@
+                            @Html.ActionLink(Model.HakimKetua.Nama, "Details", "PenegakHukums", new { id = Model.HakimKetua.ID }, null)
+                        </dd>
+
+                    }
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Anggota)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Anggota)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Panitera)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Panitera)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.TanggalRegister)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TanggalRegister)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.TanggalMusyawarah)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TanggalMusyawarah)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.TanggalDibacakan)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TanggalDibacakan)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Klasifikasi)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Klasifikasi)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SubKlasifikasi)
+                    </dt>
+
+                    <dd>
+                        <a onclick="OpenModal();" class="btn" style="padding:0px 0px;">@Html.DisplayFor(model => model.SubKlasifikasi)</a>
+                        
+                    </dd>
+
+
+
+                   
+
+                </dl>
+            </div>
+            <div class="col-md-6">
+                <dl class="dl-horizontal">
+
+
+                   
+
+
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Peradilan.JenisLembagaPeradilan)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Peradilan.JenisLembagaPeradilan)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Peradilan.Nama)
+                    </dt>
+
+                    <dd>
+                        @*@Html.DisplayFor(model => model.Peradilan.Nama)*@
+                        @Html.ActionLink(Model.Peradilan.Nama, "Details", "Pengadilans", new { id = Model.Peradilan.ID }, null)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Tersangka)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Tersangka)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Amar)
+                    </dt>
+
+                    <dd>
+                        @*@Html.DisplayFor(model => model.Amar)*@
+                        @Html.Raw(Model.Amar)
+                    </dd>
+
+
+
+
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Yurisprudensi)
+                    </dt>
+
+                    <dd>
+                        @if (Model.Yurisprudensi == true)
+                        {
+                            <text>Iya</text>
+                        }
+                        else
+                        {
+                            <text>Tidak</text>
+                        }
+                        @*@Html.DisplayFor(model => model.Yurisprudensi)*@
+                    </dd>
+
+
+
+                    <dt>
+
+                        @Html.DisplayNameFor(model => model.BerkekuatanHukumTetap)
+                    </dt>
+
+                    <dd>
+                        @if (Model.BerkekuatanHukumTetap == true)
+                        {
+                            <text>Iya</text>
+                        }
+                        else
+                        {
+                            <text>Tidak</text>
+                        }
+
+                        @*@Html.DisplayFor(model => model.BerkekuatanHukumTetap)*@
+                    </dd>
+
+                    @if (Model.Klasifikasi != null && Model.Klasifikasi.ToLower().Contains("pidana"))
+                    {
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.StatusTahanan)
+                        </dt>
+
+                        <dd>
+                            @if (Model.StatusTahanan == true)
+                            {
+                                <text>Iya</text>
+                            }
+                            else
+                            {
+                                <text>Tidak</text>
+                            }
+                            @*@Html.DisplayFor(model => model.StatusTahanan)*@
+                        </dd>
+                        if (Model.LamaHukuman != null)
+                        {
+                            <dt>
+                                @Html.DisplayNameFor(model => model.LamaHukuman)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.LamaHukuman) bulan
+                            </dd>
+                        }
+                    }
+
+                    @*<dt>
+                    @Html.DisplayNameFor(model => model.Ringkasan)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Ringkasan)
+                </dd>*@
+
+                    <dt>
+
+                        @Html.DisplayNameFor(model => model.KasusLandMark)
+                    </dt>
+
+                    <dd>
+                        @if (Model.KasusLandMark == true)
+                        {
+                            <text>Iya</text>
+                        }
+                        else
+                        {
+                            <text>Tidak</text>
+                        }
+
+                        @*@Html.DisplayFor(model => model.BerkekuatanHukumTetap)*@
+                    </dd>
+
+                </dl>
+            </div>
+
+            
+        </div>
+
+        <div class="row">
+            @if (Model.PutusanPertama != null || Model.PutusanBanding != null || Model.PutusanKasasi != null || Model.PutusanPK != null || Model.PutusanLain != null)
+            {
+                <div class="col-md-12" style="border-left: thin solid grey ;">
+                    <h4>Putusan terkait</h4>
+                    <dl class="dl-horizontal">
+                        @if (Model.PutusanPertama != null)
+                    {
+                            <dt>
+
+                                @Html.DisplayNameFor(model => model.PutusanPertama)
+                            </dt>
+
+                            <dd>
+
+
+                                @Html.DisplayFor(model => model.PutusanPertama)
+                            </dd>
+                        }
+                        @if (Model.PutusanBanding != null)
+                    {
+                            <dt>
+
+                                @Html.DisplayNameFor(model => model.PutusanBanding)
+                            </dt>
+
+                            <dd>
+
+
+                                @Html.DisplayFor(model => model.PutusanBanding)
+                            </dd>
+                        }
+                        @if (Model.PutusanKasasi != null)
+                    {
+                            <dt>
+
+                                @Html.DisplayNameFor(model => model.PutusanKasasi)
+                            </dt>
+
+                            <dd>
+
+
+                                @Html.DisplayFor(model => model.PutusanKasasi)
+                            </dd>
+                        }
+
+                        @if (Model.PutusanPK != null)
+                    {
+                            <dt>
+
+                                @Html.DisplayNameFor(model => model.PutusanPK)
+                            </dt>
+
+                            <dd>
+
+                                @*@Html.DisplayFor(Model.PutusanPK, "DisplayRelated")*@
+                                @Html.DisplayFor(model => model.PutusanPK)
+                            </dd>
+                        }
+                        @if (Model.PutusanLain != null)
+                    {
+                            <dt>
+
+                                @Html.DisplayNameFor(model => model.PutusanLain)
+                            </dt>
+
+                            <dd>
+
+
+                                @Html.DisplayFor(model => model.PutusanLain)
+                            </dd>
+                        }
+
+                    </dl>
+                </div>
+            }
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Opini tentang putusan ini</h3>
+                    <p>
+                        This is palace holder for opinion
+                    </p>
+                </div>
+
+            </div>
+
+            if (Model.Ringkasan != null)
+            {
+            <div class="row">
+                <hr />
+                <div class="col-md-12">
+                    <h4>@Html.DisplayNameFor(model => model.Ringkasan)</h4>
+                    <p>
+                        @Html.DisplayWithBreaksFor(model => model.Ringkasan)
+                    </p>
+                </div>
+
+            </div>
+            }
+
+            if (Model.CatatanAmar != null)
+            {
+            <div class="row">
+                <hr />
+                <div class="col-md-12">
+                    <h3>@Html.DisplayNameFor(model => model.CatatanAmar)</h3>
+                    <p>
+                        @Html.DisplayWithBreaksFor(model => model.CatatanAmar)
+                    </p>
+                </div>
+
+            </div>
+            }
+
+
+
+            if (Model.DataDetail != null)
+            {
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Detil Teks Putusan</h4>
+                    <pre style="font-size:18px;">
+                        @*@Html.DisplayWithBreaksFor(model => model.DataDetail.TextPutusan)*@
+                        @*@Html.Raw(Html.ActionLink(" test adding link", "Details" , "PenegakHukums" , new { id=1 }, null)+model.datadetail.textputusan)*@
+                         @Html.UpdateStringwithLink(Model.DataDetail.TextPutusan)
+                    </pre>
+                </div>
+
+            </div>
+            }
+
+            }
+            else
+            {
+            <span id="errorElement">Maaf, tidak ada data yang bersangkutan dalam database kami</span>
+            <br />
+            <br />
+            }
+        </div>
+<hr />
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |*@
+    @Html.ActionLink("Back to Search", "Index", "Pidana")
+</p>
+
+<div id="dialog" style="display: none">
+</div>
+
+<div class=" modal fade" id="myModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-10 col-lg-offset-1">
+                       
+                        @{Html.RenderAction("GetUndangUndang", "PutusanPidanas", new { query = Model.SubKlasifikasi });}
+                        
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="portfolio-modal modal fade col-md-12 " id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div  class="col-md-12 well">
+                        <div class="modal-body">
+                            <!-- Project Details Go Here -->
+                            <h2>Project Name</h2>
+                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                            <img class="img-responsive img-centered" src="img/portfolio/dreams-preview.png" alt="">
+                            <p>Dreams is a free PSD web template built by <a href="https://www.behance.net/MathavanJaya">Mathavan Jaya</a>. Dreams is a modern one page web template designed for almost any purpose. It’s a beautiful template that’s designed with the Bootstrap framework in mind.</p>
+                            <p>You can download the PSD template in this portfolio sample item at <a href="http://freebiesxpress.com/gallery/dreams-free-one-page-web-template/">FreebiesXpress.com</a>.</p>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="myModal1" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <h2>Project Name</h2>
+                <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                <img class="img-responsive img-centered" src="img/portfolio/dreams-preview.png" alt="">
+                <p>Dreams is a free PSD web template built by <a href="https://www.behance.net/MathavanJaya">Mathavan Jaya</a>. Dreams is a modern one page web template designed for almost any purpose. It’s a beautiful template that’s designed with the Bootstrap framework in mind.</p>
+                <p>You can download the PSD template in this portfolio sample item at <a href="http://freebiesxpress.com/gallery/dreams-free-one-page-web-template/">FreebiesXpress.com</a>.</p>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+<script>
+
+    
+
+    function OpenModal() {
+
+
+        $('#myModal').modal('show');  
+
+       
+
+    }
+   
+
+</script>
+
+

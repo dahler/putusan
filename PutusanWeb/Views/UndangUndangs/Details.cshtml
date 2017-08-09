@@ -1,0 +1,62 @@
+﻿@model DataModel.UndangUndang
+
+@{
+    ViewBag.Title = "Details";
+}
+@using Common
+<h2>Details</h2>
+
+<div>
+    <h4>Undang Undang</h4>
+    <hr />
+
+    @if (Model != null)
+    {
+
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Pasal)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Pasal)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TextPasal)
+            </dt>
+
+            <dd>
+                @*@Html.DisplayFor(model => model.TextPasal)*@
+                @Html.DisplayWithBreaksFor(model => model.TextPasal)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.JenisUU)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.JenisUU)
+            </dd>
+
+            @*<dt>
+                @Html.DisplayNameFor(model => model.HukumanPenjara)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.HukumanPenjara)
+            </dd>*@
+
+        </dl>
+    }
+    else
+    {
+        <span id="errorElement">Maaf, tidak ada data yang bersangkutan dalam database kami</span>
+        <br />
+        <br />
+    }
+</div>
+@*<p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@

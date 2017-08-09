@@ -1,0 +1,135 @@
+﻿@model DataModel.DDModel
+
+<div id="divPutStat" class="well">
+    
+    <div class="row form-group">
+
+        <div class="col-md-2"><strong>Pilih Tahun</strong></div>
+
+        <div class="col-lg-9">
+            @Html.DropDownListFor(m => m.ID, Model.YearList, new { @class = "form-control", @onchange = "reDrawChart();" })
+        </div>
+    </div>
+
+    <div class="row ">
+        <div id="chart" style="width: 100%; height: 400px;">
+        </div>
+    </div>
+    </div>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        google.load("visualization", "1", { packages: ["corechart"] });
+        //google.setOnLoadCallback(drawChart);
+        $(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Shared/RetrieveStatistic",
+                data: '{}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+
+
+                    drawPieChart(r); // calling method
+
+
+                },
+                failure: function (r) {
+                    alert(r.d);
+                },
+                error: function (r) {
+                    alert(r.d);
+                }
+            });
+        })
+
+        function drawPieChart(dataValues) {
+
+            var data = new google.visualization.DataTable();
+
+
+            data.addColumn('string', 'Sub Klasifikasi');
+            data.addColumn('number', 'Jumlah Putusan');
+            data.addColumn({ type: 'number', role: 'annotation' });
+
+
+            for (var i = 0; i < dataValues.length; i++) {
+                data.addRow([dataValues[i].SubKlasifikasi, dataValues[i].JumlahPutusan, dataValues[i].JumlahPutusan]);
+            }
+            //data.addRow([null, null, 30]);
+            // Instantiate and draw our chart, passing in some options
+            var chart = new google.visualization.BarChart(document.getElementById('chart'));
+            var formatter = new google.visualization.NumberFormat({ pattern: '#,###.00' });
+
+            var options = {
+                //title: 'Correlation between life expectancy, fertility rate ' +
+                //       'and population of some world countries (2010)',
+
+                //title: "Jumlah kasus per tahun yang diadili",
+                position: "top",
+                fontsize: "14px",
+                chartArea: { width: '75%', height:"95%" },
+                //seriesType: "bars",
+                //series: { 2: { type: "line", color: 'black' } },
+                backgroundColor: "none",
+                vAxis: {
+                    gridlines: {
+                        color: 'transparent'
+                    },
+                    //textPosition: 'none',
+                    baselineColor: 'transparent'
+                },
+                hAxis: {
+
+                    gridlines: {
+                        color: 'transparent'
+                    },
+                    textPosition: 'none'
+                },
+                legend: 'none',
+                colors: ['#009688', '#009688', '#009688']
+            };
+
+            chart.draw(data, options);
+        }
+
+        function reDrawChart() {
+            //alert('masuk');
+
+            var yearID = $('#ID').val() || [];
+
+            //alert(yearID);
+
+            $.ajax({
+                type: "POST",
+                url: "/Shared/FilterStatistic",
+                data: JSON.stringify({
+                    year: yearID.toString(), locale: 'en-US'
+                }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+
+                    //alert(r);
+                    drawPieChart(r); // calling method
+
+                    //var data = google.visualization.arrayToDataTable(r);
+
+                    ////Pie
+                    //var options = {
+                    //    title: 'Putusan yang sudah dibuat'
+                    //};
+                    //var chart = new google.visualization.PieChart($("#chart")[0]);
+                    //chart.draw(data, options);
+                },
+                failure: function (r) {
+                    alert(r.d);
+                },
+                error: function (r) {
+                    alert(r.d);
+                }
+            });
+        }
+    </script>

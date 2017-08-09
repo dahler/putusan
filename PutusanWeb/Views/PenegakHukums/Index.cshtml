@@ -1,0 +1,69 @@
+﻿@model IEnumerable<DataModel.PenegakHukum>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HukumPidanaID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JenisPenegak)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Catatan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nama)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Alamat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TanggalLahir)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kelamin)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.HukumPidanaID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JenisPenegak)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Catatan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nama)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Alamat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TanggalLahir)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kelamin)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

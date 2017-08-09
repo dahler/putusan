@@ -1,0 +1,159 @@
+﻿@model IEnumerable<DataModel.PutusanPidana>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HakimKetua.Catatan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Penuntut.Catatan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomorPutusan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proses)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TanggalRegister)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TanggalMusyawarah)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TanggalDibacakan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Klasifikasi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubKlasifikasi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Panitera)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JenisLembagaPeradilan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LembagaPeradilan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tersangka)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CatatanAmar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Anggota)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Yurisprudensi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusTahanan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BerkekuatanHukumTetap)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kaidah)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ringkasan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Raw)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.HakimKetua.Catatan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Penuntut.Catatan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomorPutusan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Proses)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TanggalRegister)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TanggalMusyawarah)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TanggalDibacakan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Klasifikasi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubKlasifikasi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Panitera)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JenisLembagaPeradilan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LembagaPeradilan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tersangka)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amar)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CatatanAmar)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Anggota)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Yurisprudensi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusTahanan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BerkekuatanHukumTetap)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kaidah)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ringkasan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Raw)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
